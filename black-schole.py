@@ -12,3 +12,7 @@ def d2(S,K,r,t,sigma):
 
 def call(S,K,r,t,sigma):
   return norm(d1(S,K,r,t,sigma)) * S - norm(d2(S,K,r,t,sigma)) * K * exp(-r * t)
+
+def put(S,K,r,t,sigma):
+  return K*exp(-r*t)-S*call(S,K,r,t,sigma)
+
