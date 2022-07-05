@@ -1,5 +1,5 @@
 from time import time
-from black_schole import call, put
+from black_schole import call_price, call_implied_volatility, put_price
 from datetime import datetime, date
 import pandas_datareader.data as web
 import numpy as np
@@ -26,9 +26,4 @@ risk_free_rate = (web.DataReader(('^TNX'), 'yahoo', today.replace(day=today.day-
 current_price = df['Close'].iloc[-1]
 time_to_expiry = (datetime.strptime(expiry, "%m-%d-%Y") - datetime.utcnow()).days / 365.
 
-print("Current Price: ", current_price)
-print("Strike Price: ", strike_price)
-print("Risk Free Rate: ", risk_free_rate)
-print("Days to Expire: ", time_to_expiry * 365)
-print("Volatility: ", sigma)
-print("Option Price: ", put(current_price, strike_price, risk_free_rate, time_to_expiry, sigma))
+print("Find Volatility: ", call_implied_volatility(1, 100, 120, 0.05, 30/365.))
